@@ -1,0 +1,185 @@
+<nav class="navbar navbar-expand-lg py-3 fixed-top shadow-lg transition-all" 
+     [ngClass]="isDark ? 'navbar-dark bg-dark' : 'navbar-light bg-light'">
+    <div class="container">
+        <a class="navbar-brand fw-bolder fs-3 text-success" href="#">
+            <img src="assets/logo.png"  
+                 class="me-2" 
+                 style="height: 90px; width: auto;">
+        </a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div id="navbarNav" class="collapse navbar-collapse justify-content-end align-items-center">
+            <ul class="navbar-nav me-3">
+                <li class="nav-item"><a class="nav-link fw-semibold mx-2">Home</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold mx-2">About</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold mx-2">Courses</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold mx-2">Contact</a></li>
+            </ul>
+            
+            <button class="btn btn-outline-success fw-semibold px-3 py-1 rounded-pill"
+                    (click)="toggleTheme()">
+                <i class="bi me-1" [ngClass]="isDark ? 'bi-sun-fill text-warning' : 'bi-moon-fill'"></i>
+                {{ isDark ? 'Light Mode' : 'Dark Mode' }}
+            </button>
+        </div>
+    </div>
+</nav>
+
+<header id="home" class="hero-section d-flex flex-column justify-content-center align-items-center text-center position-relative text-white">
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+    
+    <div data-aos="zoom-in" data-aos-duration="1000" class="position-relative z-1">
+        <h1 class="display-1 fw-bolder mb-3 text-shadow">
+            Madrasatul-Muflihaat
+        </h1>
+        <h3 class="fw-light mb-4 letter-spacing-2">Online and Offline Islamic Institute</h3>
+        
+        <p class="mt-4 fs-3 fst-italic arabic-font">
+            وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَىٰ
+        </p>
+        <p class="fs-5 fw-light text-muted-light">And the Hereafter is better for you than the first [life] - Quran 93:4</p>
+        
+        <a href="#courses" 
+           class="btn btn-warning mt-4 px-5 py-3 rounded-pill shadow-lg fw-bold text-dark pulsate-btn" 
+           data-aos="fade-up" data-aos-delay="500">
+           Start Your Journey
+        </a>
+    </div>
+</header>
+
+<!-- <section id="about" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="fw-bold mb-5 text-center text-primary-islamic" data-aos="fade-down">
+            <i class="bi bi-person-hearts me-2"></i> About Our Mission
+        </h2>
+        
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right" data-aos-duration="1000">
+                <p class="lead text-dark-50">
+                    Madrasatul-Muflihaat is a modern online institute dedicated to **nurturing sisters** in Deen, Qur’an, and Akhlaaq (Character). We believe that the foundation of a strong family and community lies in the informed spirituality of women.
+                </p>
+                <p class="mt-3">
+                    Our curriculum is meticulously designed by certified Mu’allimat (female scholars) to be both academically rigorous and spiritually uplifting. We strive to inspire, educate, and empower women worldwide with authentic knowledge and a deep, practical understanding of Islam.
+                </p>
+            </div>
+            <div class="col-lg-6 text-center" data-aos="fade-left" data-aos-duration="1000">
+                 
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<section id="courses" class="py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-5 text-center text-primary-islamic" data-aos="fade-down">
+            <i class="bi bi-journal-check me-2"></i> Our Diverse Courses
+        </h2>
+        
+        <div class="row g-4 justify-content-center">
+            <ng-container *ngFor="let course of [
+            { 
+              title: 'Aalimiyat', 
+              icon: 'bi-mortarboard', 
+              desc: 'Comprehensive Islamic education.', 
+              bgImage: 'assets/aalimiyat.png' 
+            },
+            { 
+              title: 'Diploma in Sharia', 
+              icon: 'bi-file-earmark-text', 
+              desc: 'Learn the principles of Sharia.', 
+              bgImage: 'assets/diploma.png' 
+            },
+            { 
+              title: 'Hifzul Quran', 
+              icon: 'bi-book-half', 
+              desc: 'Memorize the Holy Quran with proper Tajweed.', 
+              bgImage: 'assets/hifz.png' 
+            },
+            { 
+              title: 'Diploma in Sharia for Kids', 
+              icon: 'bi-people', 
+              desc: 'Islamic education for children.', 
+              bgImage: 'assets/kids.png' 
+            },
+            { 
+              title: 'Tajweed', 
+              icon: 'bi-mic', 
+              desc: 'Master the correct recitation of the Quran.', 
+              bgImage: 'assets/tajweed.png' 
+            },
+            { 
+              title: 'Short Courses', 
+              icon: 'bi-stars', 
+              desc: 'Explore a variety of short courses.', 
+              bgImage: 'assets/shortcourse.png' 
+            }
+          ]
+          ">
+          <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="card border-0 shadow-lg h-100 rounded-4 course-card hover-lift"
+                 [ngStyle]="{'background-image': 'url(' + course.bgImage + ')', 
+                             'background-size': 'cover', 
+                             'background-position': 'center',
+                             'color': '#fff',
+                             'position': 'relative'}">
+                
+                <!-- Optional overlay for better readability -->
+                <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded-4"></div>
+        
+                <div class="card-body p-4 text-center position-relative z-1">
+                    <i class="bi {{ course.icon }} fs-1 mb-3 card-icon-animated"></i>
+                    <h5 class="card-title fw-bold">{{ course.title }}</h5>
+                    <p class="card-text small mt-2">{{ course.desc }}</p>
+                    <a href="#" class="btn btn-outline-light rounded-pill px-4 mt-3 fw-semibold transition-all">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+        
+            </ng-container>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact" class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-primary-islamic" data-aos="fade-down">
+            <i class="bi bi-chat-left-dots me-2"></i> Get In Touch
+        </h2>
+        
+        <div class="row justify-content-center g-4">
+            <div class="col-md-6" data-aos="fade-right">
+                <div class="p-4 border rounded-3 bg-white shadow-sm">
+                    <p class="fs-4 text-dark-50 mb-0">
+                        <i class="bi bi-envelope-fill me-2 text-primary-islamic"></i>Email Us
+                    </p>
+                    <p class="lead fw-bold mt-1">
+                        info&#64;madrasatulmuflihaat.com
+                    </p>
+                    <a href="mailto:info@madrasatulmuflihaat.com" class="btn btn-success btn-sm mt-2">Send Mail</a>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <div class="p-4 border rounded-3 bg-white shadow-sm">
+                    <p class="fs-4 text-dark-50 mb-0">
+                        <i class="bi bi-whatsapp me-2 text-primary-islamic"></i>Message Us
+                    </p>
+                    <p class="lead fw-bold mt-1">
+                        +91 90000 00000
+                    </p>
+                    <a href="https://wa.me/919000000000" target="_blank" class="btn btn-success btn-sm mt-2">Open WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="text-center py-4 bg-primary-islamic text-white">
+    <div class="container">
+        <p class="mb-1 small">&copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.</p>
+        <p class="mb-0 small fst-italic">Seeking Knowledge is an Obligation upon every Muslim.</p>
+    </div>
+</footer>
