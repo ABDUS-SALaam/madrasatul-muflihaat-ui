@@ -1,5 +1,5 @@
 :root {
-  --islamic-green: #1515ba;
+  --islamic-green: #4d4def;
   --islamic-gold: #FFC107;
 }
 
@@ -15,8 +15,8 @@
 
 .btn-success:hover {
   /* Optional: Slightly darker shade on hover for feedback */
-  background-color: #1515ba !important; /* A slightly darker blue/navy */
-  border-color: #1515ba !important;
+  background-color: #4d4def !important; /* A slightly darker blue/navy */
+  border-color: #4d4def !important;
 }
 
 .text-primary-islamic { 
