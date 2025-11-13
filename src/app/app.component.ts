@@ -16,23 +16,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    this.isDark = savedTheme === 'dark';
-    document.body.classList.toggle('dark', this.isDark);
-
+    // Remove localStorage - it doesn't work in Azure Static Web Apps
     // Initialize AOS animations
     import('aos').then((AOS) => AOS.init({ duration: 1200, once: true }));
   }
 
   toggleTheme() {
     this.isDark = !this.isDark;
-
-    const body = document.body;
-    if (this.isDark) {
-      body.classList.add('dark-mode');
-    } else {
-      body.classList.remove('dark-mode');
-    }
+    document.body.classList.toggle('dark-mode', this.isDark);
   }
 }
