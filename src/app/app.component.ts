@@ -1,6 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+declare var AOS: any; // Declare AOS as a global variable
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,9 +18,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Remove localStorage - it doesn't work in Azure Static Web Apps
-    // Initialize AOS animations
-    import('aos').then((AOS) => AOS.init({ duration: 1200, once: true }));
+    // Initialize AOS - it's loaded as a global script
+    if (typeof AOS !== 'undefined') {
+      AOS.init({ 
+        duration: 1200, 
+        once: true 
+      });
+    }
   }
 
   toggleTheme() {
