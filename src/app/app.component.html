@@ -19,11 +19,9 @@
                 <li class="nav-item"><a class="nav-link fw-semibold mx-2">Contact</a></li>
             </ul>
             
-            <button class="btn btn-outline-success fw-semibold px-3 py-1 rounded-pill"
-                    (click)="toggleTheme()">
-                <i class="bi me-1" [ngClass]="isDark ? 'bi-sun-fill text-warning' : 'bi-moon-fill'"></i>
-                {{ isDark ? 'Light Mode' : 'Dark Mode' }}
-            </button>
+            <button class="btn btn-outline-success fw-semibold px-3 py-2 rounded-circle"
+        (click)="toggleTheme()" [attr.aria-label]="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+    <i class="bi fs-5" [ngClass]="isDark ? 'bi-sun-fill text-warning' : 'bi-moon-fill'"></i></button>
         </div>
     </div>
 </nav>
@@ -154,7 +152,7 @@
             <div class="col-md-6" data-aos="fade-right">
                 <div class="p-4 border rounded-3 bg-white shadow-sm">
                     <p class="fs-4 text-dark-50 mb-0">
-                        <i class="bi bi-envelope-fill me-2 text-primary-islamic"></i>Email Us
+                        <i class="bi bi-envelope-fill me-2 text-primary-islamic contact-icon"></i>Email Us
                     </p>
                     <p class="lead fw-bold mt-1">
                         info&#64;madrasatulmuflihaat.com
@@ -165,7 +163,7 @@
             <div class="col-md-6" data-aos="fade-left">
                 <div class="p-4 border rounded-3 bg-white shadow-sm">
                     <p class="fs-4 text-dark-50 mb-0">
-                        <i class="bi bi-whatsapp me-2 text-primary-islamic"></i>Message Us
+                        <i class="bi bi-whatsapp me-2 text-primary-islamic contact-icon"></i>Message Us
                     </p>
                     <p class="lead fw-bold mt-1">
                         +91 90000 00000

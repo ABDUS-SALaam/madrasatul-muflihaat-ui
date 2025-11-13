@@ -198,3 +198,56 @@ body.dark-mode #contact .bg-light {
   width: auto;               /* Maintain aspect ratio */
   display: inline-block;
 }
+/* Contact icons turn blue in dark mode */
+body.dark-mode .contact-icon {
+  color: #2196F3 !important; /* Nice blue color */
+}
+
+/* Optional: Make the button icon-only look better */
+.btn-outline-success.rounded-circle {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Smooth transitions for icon and button */
+.btn-outline-success.rounded-circle,
+.btn-outline-success.rounded-circle i {
+  transition: all 0.3s ease;
+}
+
+/* Default look */
+.btn-outline-success.rounded-circle {
+  color: var(--islamic-green);
+  border-color: var(--islamic-green);
+  background-color: transparent;
+}
+
+/* When hovering — invert colors elegantly */
+.btn-outline-success.rounded-circle:hover {
+  background-color: var(--islamic-green) !important;
+  color: #fff !important; /* inverts text/icon color */
+}
+
+/* Ensure icon follows the button text color */
+.btn-outline-success.rounded-circle:hover i {
+  color: #fff !important;
+}
+
+/* 🌙 Dark mode version: invert using gold */
+body.dark-mode .btn-outline-success.rounded-circle {
+  color: var(--islamic-gold);
+  border-color: var(--islamic-gold);
+}
+
+body.dark-mode .btn-outline-success.rounded-circle:hover {
+  background-color: var(--islamic-gold) !important;
+  color: #000 !important;
+}
+
+body.dark-mode .btn-outline-success.rounded-circle:hover i {
+  color: #000 !important;
+}
