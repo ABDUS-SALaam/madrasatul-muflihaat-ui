@@ -1,7 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
-// Import global CSS libraries (works with ESBuild in Angular 17+
-
-bootstrapApplication(AppComponent)
+bootstrapApplication(AppComponent, appConfig)
   .catch(err => console.error(err));

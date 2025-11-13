@@ -1,6 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+declare var AOS: any; // Declare AOS as a global variable
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,23 +18,17 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme');
-    this.isDark = savedTheme === 'dark';
-    document.body.classList.toggle('dark', this.isDark);
-
-    // Initialize AOS animations
-    import('aos').then((AOS) => AOS.init({ duration: 1200, once: true }));
+    // Initialize AOS - it's loaded as a global script
+    if (typeof AOS !== 'undefined') {
+      AOS.init({ 
+        duration: 1200, 
+        once: true 
+      });
+    }
   }
 
-toggleTheme() {
-  this.isDark = !this.isDark;
-
-  const body = document.body;
-  if (this.isDark) {
-    body.classList.add('dark-mode');
-  } else {
-    body.classList.remove('dark-mode');
+  toggleTheme() {
+    this.isDark = !this.isDark;
+    document.body.classList.toggle('dark-mode', this.isDark);
   }
-}
 }
