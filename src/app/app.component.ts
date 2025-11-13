@@ -25,9 +25,14 @@ export class AppComponent implements OnInit {
     import('aos').then((AOS) => AOS.init({ duration: 1200, once: true }));
   }
 
-  toggleTheme() {
-    this.isDark = !this.isDark;
-    document.body.classList.toggle('dark', this.isDark);
-    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+toggleTheme() {
+  this.isDark = !this.isDark;
+
+  const body = document.body;
+  if (this.isDark) {
+    body.classList.add('dark-mode');
+  } else {
+    body.classList.remove('dark-mode');
   }
+}
 }
