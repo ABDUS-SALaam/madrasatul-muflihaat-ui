@@ -23,11 +23,11 @@ import { CommonModule } from '@angular/common';
         </div>
         
         <h1>Coming Soon</h1>
-        <p class="subtitle">Our website is under construction</p>
+        <p class="subtitle">Our website is under maintenance</p>
         
         <div class="message-box">
           <p>We're working hard to bring you an amazing experience.</p>
-          <p>Stay tuned for the launch of Madrasatul Muflihaat's new website!</p>
+          <p>Stay tuned for the launch of Madrasatul Muflihaat's updated website!</p>
         </div>
         
         <div class="info">
