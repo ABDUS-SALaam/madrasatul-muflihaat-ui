@@ -1,201 +1,144 @@
-<nav
-  class="navbar navbar-expand-lg py-2 fixed-top shadow-lg transition-all"
-  [ngClass]="isDark ? 'navbar-dark' : 'navbar-light'"
-  style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px)"
-  [ngStyle]="{
-    background: isDark ? 'rgba(20, 30, 48, 0.95)' : 'rgba(255, 255, 255, 0.95)'
-  }"
->
-  <div class="container-fluid px-4">
-    <div class="row w-100 align-items-center g-0">
-      <div class="col-auto">
-        <a
-          class="navbar-brand d-flex align-items-center position-relative"
-          href="#"
-        >
-          <img src="assets/logo.png" class="logo-hover" alt="Logo" />
-          <div class="ms-3 d-none d-lg-block">
-            <h5
-              class="mb-0 fw-bold"
-              [ngClass]="isDark ? 'text-white' : 'text-dark'"
-            >
-              Madrasatul-Muflihaat
-            </h5>
-            <p class="mb-0 small text-muted">Online & Offline Institute</p>
-          </div>
-        </a>
-      </div>
+<app-maintenance *ngIf="isUnderMaintenance"></app-maintenance>
+<div *ngIf="!isUnderMaintenance">
+<nav class="navbar navbar-expand-lg py-2 fixed-top shadow-lg transition-all"
+     [ngClass]="isDark ? 'navbar-dark' : 'navbar-light'"
+     style="backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);"
+     [ngStyle]="{'background': isDark ? 'rgba(20, 30, 48, 0.95)' : 'rgba(255, 255, 255, 0.95)'}">
+    
+    <div class="container-fluid px-4">
+        <div class="row w-100 align-items-center g-0">
 
-      <div class="col"></div>
+            <div class="col-auto">
+                <a class="navbar-brand d-flex align-items-center position-relative" href="#">
+                    <img src="assets/logo.png"
+                         class="logo-hover"
+                         alt="Logo">
+                    <div class="ms-3 d-none d-lg-block">
+                        <h5 class="mb-0 fw-bold" [ngClass]="isDark ? 'text-white' : 'text-dark'">
+                            Madrasatul-Muflihaat
+                        </h5>
+                        <p class="mb-0 small text-muted">Online & Offline Institute</p>
+                    </div>
+                </a>
+            </div>
 
-      <div class="col-auto">
-        <button
-          class="navbar-toggler border-0 shadow-sm"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <div class="col"></div>
 
-        <div id="navbarNav" class="collapse navbar-collapse">
-          <ul class="navbar-nav align-items-center">
-            <li
-              class="nav-item mx-2"
-              *ngFor="let link of ['home', 'about', 'courses', 'contact']"
-            >
-              <a
-                class="nav-link fw-semibold px-3 py-2 rounded-3 nav-link-hover"
-                [href]="'#' + link"
-                [ngClass]="{ active: activeLink === link }"
-                (click)="setActive(link)"
-              >
-                {{ link | titlecase }}
-              </a>
-            </li>
+            <div class="col-auto">
+                <button class="navbar-toggler border-0 shadow-sm" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <li class="nav-item mx-3 d-none d-lg-block">
-              <div class="divider"></div>
-            </li>
+                <div id="navbarNav" class="collapse navbar-collapse">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item mx-2" *ngFor="let link of ['home','about','courses','contact']">
+                            <a class="nav-link fw-semibold px-3 py-2 rounded-3 nav-link-hover"
+                               [href]="'#' + link"
+                               [ngClass]="{'active': activeLink === link}"
+                               (click)="setActive(link)">
+                               {{ link | titlecase }}
+                            </a>
+                        </li>
+                        
 
-            <li class="nav-item mx-2">
-              <button
-                class="btn btn-sm px-3 py-2 rounded-pill shadow-sm theme-toggle-btn"
-                (click)="toggleTheme()"
-                [ngClass]="isDark ? 'btn-warning' : 'btn-dark'"
-                [attr.aria-label]="
-                  isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'
-                "
-              >
-                <i
-                  class="bi"
-                  [ngClass]="isDark ? 'bi-sun-fill' : 'bi-moon-fill'"
-                ></i>
-              </button>
-            </li>
-          </ul>
+                        <li class="nav-item mx-3 d-none d-lg-block">
+                            <div class="divider"></div>
+                        </li>
+
+                        <li class="nav-item mx-2">
+                            <button class="btn btn-sm px-3 py-2 rounded-pill shadow-sm theme-toggle-btn"
+                                    (click)="toggleTheme()"
+                                    [ngClass]="isDark ? 'btn-warning' : 'btn-dark'"
+                                    [attr.aria-label]="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+                                <i class="bi" [ngClass]="isDark ? 'bi-sun-fill' : 'bi-moon-fill'"></i>
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </nav>
 
-<header
-  id="home"
-  class="hero-section d-flex flex-column justify-content-center align-items-center text-center position-relative text-white"
->
-  <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
+<header id="home" class="hero-section d-flex flex-column justify-content-center align-items-center text-center position-relative text-white">
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
-  <div
-    data-aos="zoom-in"
-    data-aos-duration="1000"
-    class="position-relative z-1"
-  >
-    <h1 class="display-1 fw-bolder mb-3 text-shadow">Madrasatul-Muflihaat</h1>
-    <h3 class="fw-light mb-4 letter-spacing-2">
-      Online and Offline Islamic Institute
-    </h3>
+    <div data-aos="zoom-in" data-aos-duration="1000" class="position-relative z-1">
+        <h1 class="display-1 fw-bolder mb-3 text-shadow">Madrasatul-Muflihaat</h1>
+        <h3 class="fw-light mb-4 letter-spacing-2">Online and Offline Islamic Institute</h3>
 
-    <a
-      href="#courses"
-      class="btn btn-warning mt-4 px-5 py-3 rounded-pill shadow-lg fw-bold text-dark pulsate-btn"
-      data-aos="fade-up"
-      data-aos-delay="500"
-    >
-      Start Your Journey
-    </a>
-  </div>
+        <a href="#courses"
+           class="btn btn-warning mt-4 px-5 py-3 rounded-pill shadow-lg fw-bold text-dark pulsate-btn"
+           data-aos="fade-up" data-aos-delay="500">
+            Start Your Journey
+        </a>
+    </div>
 </header>
 
 <section id="courses" class="py-5">
-  <div class="container">
-    <h2
-      class="fw-bold mb-5 text-center text-primary-islamic"
-      data-aos="fade-down"
-    >
-      <i class="bi bi-journal-check me-2"></i> Our Diverse Courses
-    </h2>
+    <div class="container">
+        <h2 class="fw-bold mb-5 text-center text-primary-islamic" data-aos="fade-down">
+            <i class="bi bi-journal-check me-2"></i> Our Diverse Courses
+        </h2>
 
-    <div class="row g-4 justify-content-center">
-      <ng-container *ngFor="let course of courses">
-        <div class="col-lg-3 col-md-6" data-aos="zoom-in">
-          <div
-            class="card border-0 shadow-lg h-100 rounded-4 course-card hover-lift"
-            [ngStyle]="{
-              'background-image': 'url(' + course.bgImage + ')',
-              'background-size': 'cover',
-              'background-position': 'center',
-              color: '#fff',
-              position: 'relative'
-            }"
-          >
-            <div
-              class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded-4"
-            ></div>
-            <div class="card-body p-4 text-center position-relative z-1">
-              <i class="bi {{ course.icon }} fs-1 mb-3 card-icon-animated"></i>
-              <h5 class="card-title fw-bold text-center text-white">
-                <span>{{ course.title.main }}</span>
-                <span
-                  *ngIf="course.title.sub"
-                  class="small text-light d-block"
-                  >{{ course.title.sub }}</span
-                >
-              </h5>
-              <p class="card-text small mt-2">{{ course.desc }}</p>
-              <a
-                href="#"
-                class="btn btn-outline-light rounded-pill px-4 mt-3 fw-semibold transition-all"
-              >
-                Enroll Now
-              </a>
-            </div>
-          </div>
+        <div class="row g-4 justify-content-center">
+            <ng-container *ngFor="let course of courses">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in">
+                    <div class="card border-0 shadow-lg h-100 rounded-4 course-card hover-lift"
+                         [ngStyle]="{
+                            'background-image': 'url(' + course.bgImage + ')',
+                            'background-size': 'cover',
+                            'background-position': 'center',
+                            'color': '#fff',
+                            'position': 'relative'
+                         }">
+                        <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-25 rounded-4"></div>
+                        <div class="card-body p-4 text-center position-relative z-1">
+                            <i class="bi {{ course.icon }} fs-1 mb-3 card-icon-animated"></i>
+                            <h5 class="card-title fw-bold text-center text-white">
+                                <span>{{ course.title.main }}</span>
+                                <span *ngIf="course.title.sub" class="small text-light d-block">{{ course.title.sub }}</span>
+                              </h5>
+                            <p class="card-text small mt-2">{{ course.desc }}</p>
+                            <a href="#" class="btn btn-outline-light rounded-pill px-4 mt-3 fw-semibold transition-all">
+                                Enroll Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
-      </ng-container>
     </div>
-  </div>
 </section>
 
 <section id="contact" class="py-5 bg-light">
-  <div class="container text-center">
-    <h2 class="fw-bold mb-5 text-primary-islamic">
-      <i class="bi bi-chat-left-dots me-2"></i> Get In Touch
-    </h2>
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5 text-primary-islamic">
+            <i class="bi bi-chat-left-dots me-2"></i> Get In Touch
+        </h2>
 
-    <div class="row justify-content-center g-4">
-      <div class="col-md-6" *ngFor="let contact of contacts">
-        <div class="p-4 border rounded-3 bg-white shadow-sm">
-          <p class="fs-4 text-dark-50 mb-0">
-            <i
-              class="bi {{
-                contact.icon
-              }} me-2 text-primary-islamic contact-icon"
-            ></i
-            >{{ contact.label }}
-          </p>
-          <p class="lead fw-bold mt-1">{{ contact.value }}</p>
-          <a
-            *ngIf="contact.link"
-            [href]="contact.link"
-            target="_blank"
-            class="btn btn-success btn-sm mt-2"
-          >
-            {{ contact.buttonText }}
-          </a>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-6" *ngFor="let contact of contacts">
+                <div class="p-4 border rounded-3 bg-white shadow-sm">
+                    <p class="fs-4 text-dark-50 mb-0">
+                        <i class="bi {{contact.icon}} me-2 text-primary-islamic contact-icon"></i>{{contact.label}}
+                    </p>
+                    <p class="lead fw-bold mt-1">{{contact.value}}</p>
+                    <a *ngIf="contact.link" [href]="contact.link" target="_blank" class="btn btn-success btn-sm mt-2">
+                        {{contact.buttonText}}
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <footer class="text-center py-4 bg-primary-islamic text-white">
-  <div class="container">
-    <p class="mb-1 small">
-      &copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.
-    </p>
-    <p class="mb-0 small fst-italic">
-      Seeking Knowledge is an Obligation upon every Muslim.
-    </p>
-  </div>
+    <div class="container">
+        <p class="mb-1 small">&copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.</p>
+        <p class="mb-0 small fst-italic">Seeking Knowledge is an Obligation upon every Muslim.</p>
+    </div>
 </footer>
+</div>

@@ -1,5 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaintenanceComponent } from './maintenance.component';
+import { environment } from '../environments/environment';
 
 declare var AOS: any; // Declare AOS as a global variable
 
@@ -8,10 +10,11 @@ declare var AOS: any; // Declare AOS as a global variable
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule,MaintenanceComponent],
 })
 export class AppComponent implements OnInit {
   isDark = false;
+  isUnderMaintenance = environment.underMaintenance;;
   activeLink: string = 'home';
   navLinks = ['home', 'about', 'courses', 'contact'];
   courses = [
