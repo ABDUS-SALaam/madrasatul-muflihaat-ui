@@ -1,0 +1,639 @@
+.course-container {
+  padding-top: 100px;
+}
+
+.course-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 30px rgba(0,0,0,0.4);
+}
+
+.hover-overlay {
+  transition: opacity 0.3s;
+}
+
+.course-card:hover .hover-overlay {
+  opacity: 1;
+}
+
+.filter-btn.active {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.card-icon-animated {
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+:root {
+  --primary: #2d5f3f;
+  --secondary: #4a8c5f;
+  --accent: #f4a460;
+  --text-dark: #2c3e50;
+  --text-light: #6c757d;
+  --primary-dark: #1e4028;
+  --primary-light: #5fa87a;
+  --bg-light: #f8f9fa;
+  --accent-gold: #FFC107;
+}
+
+/* ===== MODAL STYLES ===== */
+.enrollment-modal .modal-content {
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* Split Layout Modal */
+.enrollment-modal .modal-dialog {
+  max-width: 950px;
+}
+
+.modal-split-container {
+  display: flex;
+  min-height: 600px;
+}
+
+/* Left Side - Visual Panel */
+.modal-left {
+  flex: 0 0 45%;
+  background-color: #061692;
+  color: #fff;
+  padding: 3rem 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-left i,
+.modal-left .highlight {
+  color: #FFC107;
+}
+
+.modal-left-content {
+  position: relative;
+  z-index: 2;
+}
+
+.modal-left::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: float 20s infinite ease-in-out;
+}
+
+.modal-left::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -30%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  animation: float 15s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -30px) rotate(120deg); }
+  66% { transform: translate(-20px, 20px) rotate(240deg); }
+}
+
+.modal-logo {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-logo i {
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+}
+
+.modal-left h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.modal-left p {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.course-info-badge {
+  background: #FFC107;
+  color: #000 !important;
+  padding: 12px 20px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.5);
+}
+
+.course-info-badge i {
+  color: #000;
+  font-size: 1.3rem;
+}
+
+.features-list {
+  list-style: none;
+  margin-top: 2rem;
+  padding: 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.features-list li i {
+  color: var(--accent-gold);
+  font-size: 1.2rem;
+}
+
+.modal-decoration {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 8rem;
+  opacity: 0.05;
+  z-index: 1;
+}
+
+/* Right Side - Form Panel */
+.modal-right {
+  flex: 1;
+  padding: 3rem 2.5rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal-header-custom {
+  margin-bottom: 2rem;
+}
+
+.modal-header-custom h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.modal-header-custom p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.close-btn:hover {
+  background: #e9ecef;
+  transform: rotate(90deg);
+}
+
+.close-btn i {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+/* Progress Steps */
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.progress-steps::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #e9ecef;
+  z-index: 0;
+}
+
+.progress-steps::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 2px;
+  background: var(--primary);
+  z-index: 0;
+  transition: width 0.4s ease;
+}
+
+.progress-steps[data-progress="33"]::after { width: 33%; }
+.progress-steps[data-progress="66"]::after { width: 66%; }
+.progress-steps[data-progress="100"]::after { width: 100%; }
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #495057;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.step.active .step-circle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(45, 95, 63, 0.3);
+  transform: scale(1.1);
+}
+
+.step.completed .step-circle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.step.active .step-label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Form Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.form-control-custom {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: #fafbfc;
+}
+
+.form-control-custom:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(45, 122, 79, 0.08);
+}
+
+.form-control-custom:focus ~ .input-icon {
+  color: var(--primary);
+}
+
+.form-control-custom.filled {
+  border-color: var(--primary-light);
+  background: white;
+}
+
+/* Validation States */
+.form-control-custom.is-invalid {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+  padding-right: 48px;
+}
+
+.form-control-custom.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
+}
+
+.form-control-custom.is-valid {
+  border-color: #28a745;
+  background-color: #f0fff4;
+  padding-right: 48px;
+}
+
+.form-control-custom.is-valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
+}
+
+.form-control-custom.is-invalid ~ .input-icon {
+  color: #dc3545;
+}
+
+.form-control-custom.is-valid ~ .input-icon {
+  color: #28a745;
+}
+
+/* Validation Icons */
+.form-control-custom.is-invalid::after,
+.form-control-custom.is-valid::after {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Bootstrap Icons';
+  font-size: 1.2rem;
+}
+
+.invalid-feedback {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #dc3545;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.invalid-feedback i {
+  margin-right: 4px;
+}
+
+/* Submit Button */
+.btn-submit-custom {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #FFC107 0%, #FFB300 100%);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+}
+
+.btn-submit-custom:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 179, 0, 0.6);
+  background: linear-gradient(135deg, #FFB300 0%, #FFA000 100%);
+}
+
+.btn-submit-custom:active {
+  transform: translateY(0);
+}
+
+.btn-submit-custom i {
+  transition: transform 0.3s ease;
+}
+
+.btn-submit-custom:hover:not(:disabled) i {
+  transform: translateX(4px);
+}
+
+.btn-submit-custom:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Success Animation */
+.success-checkmark {
+  animation: checkmark 0.5s ease-out;
+}
+
+@keyframes checkmark {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+  border-width: 0.15em;
+}
+
+/* ===== TOAST STYLES ===== */
+.toast-container {
+  z-index: 9999;
+}
+
+.toast {
+  border-radius: 12px;
+  overflow: hidden;
+  animation: slideInRight 0.4s ease, fadeOut 0.4s ease 3.6s;
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 1rem;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.toast .toast-body {
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.toast .toast-body i {
+  font-size: 1.3rem;
+}
+
+.toast.bg-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+.toast.bg-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #e63946 100%) !important;
+}
+
+.toast.bg-info {
+  background: linear-gradient(135deg, #17a2b8 0%, #1d9bb6 100%) !important;
+}
+
+.toast .btn-close-white {
+  opacity: 0.8;
+}
+
+.toast .btn-close-white:hover {
+  opacity: 1;
+}
+
+/* Modal Backdrop */
+.modal-backdrop.show {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-split-container {
+    flex-direction: column;
+  }
+
+  .modal-left {
+    flex: 0 0 auto;
+    padding: 2rem 1.5rem;
+    min-height: 300px;
+  }
+
+  .modal-right {
+    padding: 2rem 1.5rem;
+  }
+
+  .modal-left h2 {
+    font-size: 1.5rem;
+  }
+
+  .features-list {
+    display: none;
+  }
+
+  .toast {
+    min-width: 280px;
+    max-width: 350px;
+  }
+}
+/* Ensure the number remains visible when the step is completed */
+.step.completed .step-circle {
+  background-color: #28a745; /* Or your preferred success color */
+  color: #ffffff !important;   /* Force white text if background is dark */
+  border-color: #28a745;
+}
+
+/* If you want the number to be a different color (e.g., dark) when active or completed */
+.step.active .step-circle {
+  background-color: #ffc107; /* Warning/Yellow color */
+  color: #000 !important;    /* Black text for contrast */
+}
+
+/* This targets the specific issue of 'turning all white' */
+.progress-steps .step.completed .step-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.about-title {
+  font-size: 2.6rem;
+  color: #061692b7;
+  margin-bottom: 10px;
+}
+.title-underline {
+  width: 70px;
+  height: 4px;
+  background: #061692b7;
+  border-radius: 5px;
+}

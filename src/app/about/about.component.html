@@ -1,0 +1,133 @@
+<div class="about-container">
+
+    <!-- PAGE TITLE -->
+    <section class="about-header-section">
+      <h1 class="fw-bold text-center about-title">About Madrasatul Muflihaat</h1>
+      <div class="title-underline mx-auto"></div>
+    </section>
+  
+    <!-- FOUNDER MESSAGE -->
+    <section class="about-section">
+      <div class="container">
+        <div class="founder-box">
+          <h3 class="fw-bold text-center mb-3 text-primary">Founder’s Message</h3>
+  
+          <blockquote class="blockquote text-center fs-5 text-muted fst-italic">
+            {{ founderMessage }}
+          </blockquote>
+  
+          <p class="text-center mt-4 text-secondary small">
+            — Founder of Madrasatul Muflihaat
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <!-- IMPACT STATS -->
+    <section class="stats-section py-5 bg-gradient text-white">
+      <div class="container">
+        <div class="row text-center g-4 justify-content-center">
+          <div
+            class="col-md-3"
+            *ngFor="let stat of impactStats"
+            data-aos="zoom-in"
+          >
+            <div class="stat-card p-4 rounded shadow bg-opacity-25 bg-white">
+              <div><h2 class="fw-bold display-5">{{ stat.number }}</h2></div>
+              <p class="mb-0 fs-5">{{ stat.label }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- MISSION -->
+    <section class="mission-section py-5">
+      <div class="container">
+        <h2 class="fw-bold text-center text-primary mb-4">Our Mission</h2>
+        <div class="title-underline mx-auto"></div>
+  
+        <div class="mission-box mt-4">
+          <h4 class="fw-bold text-primary mb-3">Guided by Knowledge & Light</h4>
+  
+          <p class="lead">
+            Our mission is to spread <strong>authentic Islamic knowledge</strong>
+            rooted in the Qur’an & Sunnah.
+          </p>
+  
+          <p>
+            We aim to guide seekers toward sincerity, humility, and devotion so
+            they may become beacons of light within their families and
+            communities.
+          </p>
+        </div>
+      </div>
+    </section>
+  
+   <!-- FACULTY -->
+<section class="faculty-section py-5">
+  <div class="container">
+    <h2 class="fw-bold text-center text-primary mb-3">Our Faculty</h2>
+    <div class="title-underline mx-auto mb-5"></div>
+
+    <div class="row g-4 justify-content-center">
+      <div
+        class="col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let member of faculty"
+        data-aos="fade-up"
+      >
+        <div class="faculty-card text-center p-4 rounded-4 shadow-lg">
+          
+          <!-- Circular Avatar -->
+          <div class="faculty-avatar mx-auto mb-3">
+            <i class="bi bi-person-badge fs-1 text-primary"></i>
+          </div>
+
+          <!-- Name and Title -->
+          <h5 class="fw-bold text-dark">{{ member.name }}</h5>
+          <p class="text-primary fw-semibold mb-0">{{ member.title }}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+    <!-- ADMIN SECTION -->
+<section class="admin-section py-5">
+  <div class="container">
+    <h2 class="fw-bold text-center text-primary mb-3">Our Administration</h2>
+    <div class="title-underline mx-auto mb-5"></div>
+
+    <div class="row g-4 justify-content-center">
+      <div
+        class="col-sm-6 col-md-4 col-lg-3"
+        *ngFor="let admin of admins"
+        data-aos="fade-up"
+      >
+        <div class="admin-card text-center p-4 rounded-4 shadow-lg">
+          
+          <!-- Circular Avatar -->
+          <div class="admin-avatar mx-auto mb-3">
+            <i class="bi bi-person-badge fs-1 text-primary"></i>
+          </div>
+
+          <!-- Name and Position -->
+          <h5 class="fw-bold text-dark">{{ admin.name }}</h5>
+          <p class="text-primary fw-semibold mb-0">{{ admin.title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </div>
+  
+  <footer class="text-center py-4 bg-primary-islamic text-white">
+    <div class="container">
+        <p class="mb-1 small">&copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.</p>
+        <p class="mb-0 small fst-italic">Seeking Knowledge is an Obligation upon every Muslim.</p>
+    </div>
+  </footer>
+  

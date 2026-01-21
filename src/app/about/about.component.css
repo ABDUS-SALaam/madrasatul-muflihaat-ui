@@ -1,0 +1,210 @@
+/* FIX NAVBAR OVERLAP */
+.about-container {
+  padding-top: 130px;
+}
+
+/* PAGE TITLE */
+.about-header-section {
+  background: #f5f7fb;
+  padding: 50px 0 30px;
+}
+
+.about-title {
+  font-size: 2.6rem;
+  color: #061692b7;
+  margin-bottom: 10px;
+}
+
+.title-underline {
+  width: 70px;
+  height: 4px;
+  background: #061692b7;
+  border-radius: 5px;
+}
+
+
+/* SECTION GENERAL */
+.about-section,
+.mission-section {
+  padding: 70px 0;
+  background: #f7f9fc;
+}
+
+.founder-box,
+.mission-box {
+  background: white;
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* STATS SECTION */
+.stats-section {
+  background: #061692; /* fully opaque navy blue */
+  color: white;
+  padding: 70px 0;
+}
+
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 25px 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* FACULTY SECTION */
+.faculty-section {
+  background: #061692b7;
+  padding: 80px 0;
+}
+
+.faculty-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.faculty-avatar {
+  width: 85px;
+  height: 85px;
+  background: #dce6ff;
+  border-radius: 50%;
+}
+
+.text-primary {
+  color: #061692b7 !important; /* blue matching your logo */
+}
+/* FACULTY SECTION */
+.faculty-section {
+  background: linear-gradient(to bottom, #f5f7fb, #e8efff); /* soft gradient background */
+  padding: 100px 0;
+}
+
+/* Title */
+.faculty-section h2 {
+  font-size: 2.8rem;
+  letter-spacing: 1px;
+  color: #061692b7;
+}
+
+.title-underline {
+  width: 80px;
+  height: 4px;
+  background: #061692;
+  border-radius: 5px;
+}
+
+/* Faculty Card */
+.faculty-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 20px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.faculty-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar */
+.faculty-avatar {
+  width: 90px;
+  height: 90px;
+  background: #dce6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: transform 0.3s ease;
+}
+
+.faculty-card:hover .faculty-avatar {
+  transform: scale(1.1);
+}
+
+/* Social icons */
+.social-icons a {
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #ff7b00; /* subtle accent color on hover */
+  transform: translateY(-2px);
+}
+
+/* Text colors */
+.text-primary {
+  color: #061692 !important;
+}
+
+.text-dark {
+  color: #1a1a1a !important;
+}
+/* ADMIN SECTION */
+.admin-section {
+  background: linear-gradient(to bottom, #f0f4ff, #e1ebff); /* slightly different gradient from faculty */
+  padding: 100px 0;
+}
+
+/* Admin Card */
+.admin-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 20px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.admin-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Avatar */
+.admin-avatar {
+  width: 90px;
+  height: 90px;
+  background: #d0e0ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: transform 0.3s ease;
+}
+
+.admin-card:hover .admin-avatar {
+  transform: scale(1.1);
+}
+
+/* Social/contact icons */
+.admin-card .social-icons a {
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.admin-card .social-icons a:hover {
+  color: #ff7b00; /* subtle accent on hover */
+  transform: translateY(-2px);
+}
+
+/* Text colors */
+.admin-section .text-primary {
+  color: #061692 !important;
+}
+
+.admin-section .text-dark {
+  color: #1a1a1a !important;
+}
+

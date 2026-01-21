@@ -1,0 +1,239 @@
+<div class="course-container">
+  <section id="courses" class="py-5 mt-5">
+    <div class="container">
+        <!-- Section Header -->
+        <h2 class="fw-bold mb-5 text-center text-primary-islamic">
+          <h1 class="fw-bold text-center about-title">Explore Our Courses</h1>
+          <div class="title-underline mx-auto"></div>
+        </h2>
+    
+        <!-- Courses Grid -->
+        <div class="row g-4 justify-content-center">
+          <ng-container *ngFor="let course of courses">
+            <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+              <div class="card border-0 shadow-lg h-100 rounded-4 course-card hover-lift position-relative overflow-hidden"
+                   [ngStyle]="{
+                     'background-image': 'url(' + course.bgImage + ')',
+                     'background-size': 'cover',
+                     'background-position': 'center',
+                     'color': '#fff'
+                   }">
+                <!-- Dark Overlay -->
+                <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded-4"></div>
+    
+                <!-- Course Details -->
+                <div class="card-body position-relative z-1 p-4 d-flex flex-column justify-content-between text-center">
+                  <div class="position-absolute top-0 start-0 m-2" style="z-index: 15;">
+                    <span *ngIf="course.admissionStatus === true" 
+                          class="badge bg-success px-3 py-2 rounded-pill shadow-lg"
+                          style="animation: pulse 2s infinite;">
+                      <i class="bi bi-check-circle-fill me-1"></i>
+                      <strong>ADMISSIONS OPEN</strong>
+                    </span>
+                    <span *ngIf="course.admissionStatus === false" 
+                          class="badge bg-danger px-3 py-2 rounded-pill shadow-lg">
+                      <i class="bi bi-x-circle-fill me-1"></i>
+                      <strong>ADMISSIONS CLOSED</strong>
+                    </span>
+                  </div>
+                  <i class="bi {{ course.icon }} fs-1 mb-3 card-icon-animated"></i>
+                  <h5 class="card-title fw-bold text-white mb-2">
+                    {{ course.title.main }}
+                    <span *ngIf="course.title.sub" class="small text-light d-block">{{ course.title.sub }}</span>
+                  </h5>
+                  <p class="card-text small">{{ course.desc }}</p>
+    
+                  <!-- Hover Overlay Button -->
+                  <div class="mt-auto">
+                    <a
+                      href="javascript:void(0)"
+                      class="btn btn-warning rounded-pill px-4 py-2 fw-bold shadow-lg"
+                      (click)="openEnrollModal(course)">
+                      <i class="bi" [ngClass]="course.admissionStatus === true ? 'bi-check-circle' : 'bi-lock-fill'"></i>
+                      {{ course.admissionStatus === true ? 'Enroll Now' : 'Admissions Closed' }}
+                    </a>
+                  </div>
+                </div>
+    
+                <!-- Animated Hover Overlay -->
+                <div class="hover-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-75 text-center text-white opacity-0 transition-all">
+                  <div>
+                    <h5 class="fw-bold">{{ course.title.main }}</h5>
+                    <p class="small mb-2">{{ course.desc }}</p>
+                    <a href="#" class="btn btn-outline-light btn-sm rounded-pill">Enroll Today</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </section>
+  
+    <!-- ENROLLMENT MODAL -->
+    <div class="modal fade enrollment-modal" id="enrollModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+    
+          <!-- Close Button -->
+          <button type="button" class="close-btn" (click)="closeEnrollModal()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+    
+          <div class="modal-split-container">
+    
+            <!-- LEFT PANEL -->
+            <div class="modal-left">
+              <div class="modal-left-content">
+                <div class="modal-logo">
+                  <i class="bi bi-mortarboard-fill"></i>
+                </div>
+    
+                <h2>Begin Your Islamic Learning Journey</h2>
+                <p>Start your learning journey today and explore courses designed to help you grow and succeed.</p>
+    
+                <div class="course-info-badge" *ngIf="selectedCourse">
+                  <i class="bi bi-award-fill"></i>
+                  <span>{{ selectedCourse.title.main }}</span>
+                </div>
+    
+                <ul class="features-list">
+                  <li><i class="bi bi-check-circle-fill"></i> Qualified instructors</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Structured syllabus</li>
+                  <li><i class="bi bi-check-circle-fill"></i> Supportive learning environment</li>
+                </ul>            
+              </div>
+    
+              <i class="bi bi-book modal-decoration"></i>
+            </div>
+    
+            <!-- RIGHT PANEL -->
+            <div class="modal-right">
+    
+              <div class="modal-header-custom">
+                <h3>Enrollment Form</h3>
+                <p>Please fill in your details</p>
+              </div>
+    
+              <!-- Progress -->
+              <div class="progress-steps" [attr.data-progress]="formProgress">
+                <div class="step" 
+                     [class.completed]="enrollment.name && !validationErrors.name"
+                     [class.active]="touched.name">
+                  <div class="step-circle">1</div>
+                  <div class="step-label">Name</div>
+                </div>
+    
+                <div class="step" 
+                     [class.completed]="enrollment.email && !validationErrors.email"
+                     [class.active]="touched.email">
+                  <div class="step-circle">2</div>
+                  <div class="step-label">Email</div>
+                </div>
+    
+                <div class="step" 
+                     [class.completed]="enrollment.phone && !validationErrors.phone"
+                     [class.active]="touched.phone">
+                  <div class="step-circle">3</div>
+                  <div class="step-label">Phone</div>
+                </div>
+              </div>
+    
+              <!-- FORM -->
+              <form #enrollForm="ngForm" (ngSubmit)="submitEnrollment()">
+    
+                <!-- Name Field -->
+                <div class="form-group">
+                  <label class="form-label">Full Name</label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-person-fill input-icon"></i>
+                    <input
+                      type="text"
+                      class="form-control-custom"
+                      [class.is-invalid]="touched.name && validationErrors.name"
+                      [class.is-valid]="touched.name && !validationErrors.name && enrollment.name"
+                      name="name"
+                      [(ngModel)]="enrollment.name"
+                      (blur)="validateField('name', true)"
+                      (input)="validateField('name', false)"
+                      (focus)="touched.name = true"
+                      placeholder="Enter your full name"
+                      required>
+                  </div>
+                  <div class="invalid-feedback" *ngIf="touched.name && validationErrors.name">
+                    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.name }}
+                  </div>
+                </div>
+    
+                <!-- Email Field -->
+                <div class="form-group">
+                  <label class="form-label">Email Address</label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-envelope-fill input-icon"></i>
+                    <input
+                      type="email"
+                      class="form-control-custom"
+                      [class.is-invalid]="touched.email && validationErrors.email"
+                      [class.is-valid]="touched.email && !validationErrors.email && enrollment.email"
+                      name="email"
+                      [(ngModel)]="enrollment.email"
+                      (blur)="validateField('email', true)"
+                      (input)="validateField('email', false)"
+                      (focus)="touched.email = true"
+                      placeholder="your.email@example.com"
+                      required>
+                  </div>
+                  <div class="invalid-feedback" *ngIf="touched.email && validationErrors.email">
+                    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.email }}
+                  </div>
+                </div>
+    
+                <!-- Phone Field -->
+                <div class="form-group">
+                  <label class="form-label">Phone Number</label>
+                  <div class="input-wrapper">
+                    <i class="bi bi-telephone-fill input-icon"></i>
+                    <input
+                      type="tel"
+                      class="form-control-custom"
+                      [class.is-invalid]="touched.phone && validationErrors.phone"
+                      [class.is-valid]="touched.phone && !validationErrors.phone && enrollment.phone"
+                      name="phone"
+                      [(ngModel)]="enrollment.phone"
+                      (blur)="validateField('phone', true)"
+                      (input)="validateField('phone', false)"
+                      (focus)="touched.phone = true"
+                      placeholder="1234567890"
+                      required>
+                  </div>
+                  <div class="invalid-feedback" *ngIf="touched.phone && validationErrors.phone">
+                    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.phone }}
+                  </div>
+                </div>
+    
+                <button
+                  type="submit"
+                  class="btn-submit-custom"
+                  [disabled]="!isFormValid() || isSubmitting">
+                  <span>{{ submitButtonText }}</span>
+                  <i [class]="submitButtonIcon"></i>
+                </button>
+    
+              </form>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- TOAST CONTAINER -->
+    <div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+    
+  </div>
+  <footer class="text-center py-4 bg-primary-islamic text-white">
+    <div class="container">
+        <p class="mb-1 small">&copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.</p>
+        <p class="mb-0 small fst-italic">Seeking Knowledge is an Obligation upon every Muslim.</p>
+    </div>
+</footer>

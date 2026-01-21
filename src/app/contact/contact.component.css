@@ -1,0 +1,92 @@
+/* Inherit Theme Variables */
+.contact-page {
+    background-color: #fcfdfc;
+    padding-top: 120px;
+  }
+  
+  .contact-header {
+    padding-bottom: 60px;
+  }
+  
+  /* Info Cards */
+  .contact-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid var(--islamic-green);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  .about-title {
+    font-size: 2.6rem;
+    color: #061692b7;
+    margin-bottom: 10px;
+  }
+  .title-underline {
+    width: 70px;
+    height: 4px;
+    background: #061692b7;
+    border-radius: 5px;
+  }
+  .icon-box {
+    width: 55px;
+    height: 55px;
+    background-color: #f0f4f1;
+    color: var(--islamic-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: 0.3s;
+  }
+  
+  .contact-card:hover .icon-box {
+    background-color: var(--islamic-green);
+    color: white;
+  }
+  
+  /* Form Styling */
+  .form-container {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .custom-input {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+  }
+  
+  .custom-input:focus {
+    border-color: var(--islamic-green);
+    background-color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(6, 22, 146, 0.1);
+  }
+  
+  /* Button Styling */
+  .btn-islamic-submit {
+    background-color: var(--islamic-gold);
+    color: #030623;
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+  }
+  
+  .btn-islamic-submit:hover:not(:disabled) {
+    background-color: #e5ad06;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+  }
+  
+  /* Dark Mode Overrides */
+  body.dark-mode .contact-page { background-color: #121212; }
+  body.dark-mode .contact-card { background: #1e1e1e; color: white; border-color: var(--islamic-gold); }
+  body.dark-mode .icon-box { background: #2d2d2d; color: var(--islamic-gold); }
+  body.dark-mode .custom-input { background: #2d2d2d; border-color: #444; color: white; }
+  body.dark-mode .bg-white { background-color: #1e1e1e !important; }

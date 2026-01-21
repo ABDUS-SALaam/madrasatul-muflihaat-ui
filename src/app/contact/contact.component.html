@@ -1,0 +1,105 @@
+<div class="contact-page">
+  <section class="contact-header text-center">
+    <div class="container">
+      <h1 class="fw-bold text-center about-title">Get In Touch</h1>
+      <div class="title-underline mx-auto"></div>
+      <p class="lead mx-auto" style="max-width: 600px;">
+        Have questions about our courses or admissions? Our team is here to guide you on your journey of knowledge.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-content pb-5">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-5">
+          <div class="info-side">
+            <h3 class="fw-bold mb-4 text-primary-islamic">Contact Information</h3>
+
+            <div class="contact-card hover-lift mb-4">
+              <div class="icon-box">
+                <i class="bi bi-telephone-plus-fill"></i>
+              </div>
+              <div class="ms-3">
+                <h6 class="fw-bold mb-1">Call Us</h6>
+                <p class="text-muted mb-0">+91 1234567890</p>
+                <p class="text-muted mb-0">+91 0987654321</p>
+              </div>
+            </div>
+
+            <div class="contact-card hover-lift mb-4">
+              <div class="icon-box">
+                <i class="bi bi-envelope-paper-heart-fill"></i>
+              </div>
+              <div class="ms-3">
+                <h6 class="fw-bold mb-1">Email Us</h6>
+                <p class="text-muted mb-0">{{'info@islamicinstitute.edu'}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="form-container shadow-sm">
+            <div class="form-header bg-primary-islamic text-white p-4 rounded-top-4">
+              <h4 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Send a Message</h4>
+            </div>
+            <div class="p-4 p-md-5 bg-white rounded-bottom-4 border-start border-end border-bottom">
+              <div class="row g-4">
+                <div class="col-12">
+                  <label class="form-label fw-bold">Full Name</label>
+                  <input type="text" class="form-control custom-input" [(ngModel)]="contactForm.name" [class.is-invalid]="touched.name && validationErrors.name" (blur)="validateField('name')" placeholder="Enter your name">
+                  <div class="invalid-feedback">{{ validationErrors.name }}</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Email</label>
+                  <input type="email" class="form-control custom-input" [(ngModel)]="contactForm.email" [class.is-invalid]="touched.email && validationErrors.email" (blur)="validateField('email')" placeholder="email@example.com">
+                  <div class="invalid-feedback">{{ validationErrors.email }}</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label fw-bold">Phone</label>
+                  <input type="tel" class="form-control custom-input" [(ngModel)]="contactForm.phone" [class.is-invalid]="touched.phone && validationErrors.phone" (blur)="validateField('phone')" placeholder="10-digit number">
+                  <div class="invalid-feedback">{{ validationErrors.phone }}</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-bold">Subject</label>
+                  <select class="form-select custom-input" [(ngModel)]="contactForm.subject" [class.is-invalid]="touched.subject && validationErrors.subject" (blur)="validateField('subject')">
+                    <option value="">Choose inquiry type...</option>
+                    <option value="admission">Admission Inquiry</option>
+                    <option value="course">Course Information</option>
+                    <option value="general">General Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label fw-bold">Message</label>
+                  <textarea class="form-control custom-input" rows="4" [(ngModel)]="contactForm.message" [class.is-invalid]="touched.message && validationErrors.message" (blur)="validateField('message')" placeholder="How can we help you?"></textarea>
+                </div>
+
+                <div class="col-12">
+                  <button type="button" class="btn btn-islamic-submit w-100 py-3" [disabled]="isSubmitting || !isFormValid()" (click)="submitForm()">
+                    <span *ngIf="!isSubmitting">
+                      <i class="bi bi-send-check-fill me-2"></i>Send Message
+                    </span>
+                    <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+<footer class="text-center py-4 bg-primary-islamic text-white">
+  <div class="container">
+      <p class="mb-1 small">&copy; 2025 Madrasatul-Muflihaat. All Rights Reserved.</p>
+      <p class="mb-0 small fst-italic">Seeking Knowledge is an Obligation upon every Muslim.</p>
+  </div>
+</footer>
