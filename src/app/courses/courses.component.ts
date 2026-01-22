@@ -2,9 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
-import { HttpClient, HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 declare var bootstrap: any;
+
+/* ===================== INTERFACES ===================== */
 
 interface Course {
   title: { main: string; sub?: string };
@@ -12,7 +14,7 @@ interface Course {
   icon: string;
   bgImage: string;
   category: string;
-  admissionStatus:Boolean;
+  admissionStatus: boolean;
 }
 
 interface Enrollment {
@@ -20,13 +22,21 @@ interface Enrollment {
   email: string;
   phone: string;
   course: string;
+  knowsUrdu: string;
+  guardianConsent: boolean;
+  studentAgreement: boolean;
 }
 
 interface ValidationErrors {
   name?: string;
   email?: string;
   phone?: string;
+  knowsUrdu?: string;
+  guardianConsent?: string;
+  studentAgreement?: string;
 }
+
+/* ===================== COMPONENT ===================== */
 
 @Component({
   selector: 'app-courses',
@@ -37,36 +47,48 @@ interface ValidationErrors {
 })
 export class CoursesComponent implements OnInit {
 
-  // ===== COURSES =====
-  courses: Course[] = [];
-  displayCount = 6;
-  activeCategory = 'all';
+  /* ===================== COURSES ===================== */
 
-  // ===== ENROLLMENT =====
+  courses: Course[] = [];
   selectedCourse: Course | null = null;
-  enrollments: Enrollment[] = [];
+
+  /* ===================== ENROLLMENT ===================== */
 
   enrollment: Enrollment = {
     name: '',
     email: '',
     phone: '',
-    course: ''
+    course: '',
+    knowsUrdu: '',
+    guardianConsent: false,
+    studentAgreement: false
   };
 
-  // ===== VALIDATION =====
+  enrollments: Enrollment[] = [];
+
+  /* ===================== VALIDATION ===================== */
+
   validationErrors: ValidationErrors = {};
-  touched = {
+
+  touched: Record<keyof Enrollment, boolean> = {
     name: false,
     email: false,
-    phone: false
+    phone: false,
+    course: false,
+    knowsUrdu: false,
+    guardianConsent: false,
+    studentAgreement: false
   };
 
   formProgress = 0;
   isSubmitting = false;
+
   submitButtonText = 'Complete Enrollment';
   submitButtonIcon = 'bi bi-arrow-right-circle-fill';
 
-  constructor(private http: HttpClient) {} 
+  constructor(private http: HttpClient) {}
+
+  /* ===================== INIT ===================== */
 
   ngOnInit(): void {
     this.courses = [
@@ -121,98 +143,87 @@ export class CoursesComponent implements OnInit {
     ];
   }
 
-  // ===== VALIDATION METHODS =====
+  /* ===================== VALIDATORS ===================== */
+
   validateName(name: string): string | null {
-    if (!name || name.trim().length === 0) {
-      return 'Name is required';
-    }
-    if (name.trim().length < 3) {
-      return 'Name must be at least 3 characters';
-    }
-    if (!/^[a-zA-Z\s]+$/.test(name)) {
-      return 'Name should only contain letters';
-    }
+    if (!name.trim()) return 'Name is required';
+    if (name.trim().length < 3) return 'Name must be at least 3 characters';
+    if (!/^[a-zA-Z\s]+$/.test(name)) return 'Name should only contain letters';
     return null;
   }
 
   validateEmail(email: string): string | null {
-    if (!email || email.trim().length === 0) {
-      return 'Email is required';
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return 'Please enter a valid email address';
-    }
-    return null;
+    if (!email.trim()) return 'Email is required';
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email) ? null : 'Invalid email address';
   }
 
   validatePhone(phone: string): string | null {
-    if (!phone || phone.trim().length === 0) {
-      return 'Phone number is required';
-    }
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''))) {
-      return 'Please enter a valid 10-digit phone number';
-    }
-    return null;
+    if (!phone.trim()) return 'Phone number is required';
+    const cleaned = phone.replace(/\D/g, '');
+    return cleaned.length === 10 ? null : 'Enter a valid 10-digit phone number';
   }
 
-  validateField(field: 'name' | 'email' | 'phone',value:boolean): void {
-    this.touched[field] = value;
-    
-    switch(field) {
+  validateField(field: keyof Enrollment, touched = true): void {
+    this.touched[field] = touched;
+
+    switch (field) {
       case 'name':
-        const nameError = this.validateName(this.enrollment.name);
-        if (nameError) {
-          this.validationErrors.name = nameError;
-        } else {
-          delete this.validationErrors.name;
-        }
+        this.validationErrors.name = this.validateName(this.enrollment.name) || undefined;
         break;
+
       case 'email':
-        const emailError = this.validateEmail(this.enrollment.email);
-        if (emailError) {
-          this.validationErrors.email = emailError;
-        } else {
-          delete this.validationErrors.email;
-        }
+        this.validationErrors.email = this.validateEmail(this.enrollment.email) || undefined;
         break;
+
       case 'phone':
-        const phoneError = this.validatePhone(this.enrollment.phone);
-        if (phoneError) {
-          this.validationErrors.phone = phoneError;
-        } else {
-          delete this.validationErrors.phone;
-        }
+        this.validationErrors.phone = this.validatePhone(this.enrollment.phone) || undefined;
+        break;
+
+      case 'knowsUrdu':
+        this.validationErrors.knowsUrdu =
+          this.enrollment.knowsUrdu ? undefined : 'Please select an option';
+        break;
+
+      case 'guardianConsent':
+        this.validationErrors.guardianConsent =
+          this.enrollment.guardianConsent ? undefined : 'Guardian consent is required';
+        break;
+
+      case 'studentAgreement':
+        this.validationErrors.studentAgreement =
+          this.enrollment.studentAgreement ? undefined : 'You must agree before submitting';
         break;
     }
-    
+
     this.updateProgress();
   }
 
   isFormValid(): boolean {
-    return !this.validationErrors.name && 
-           !this.validationErrors.email && 
-           !this.validationErrors.phone &&
-           this.enrollment.name.trim().length > 0 &&
-           this.enrollment.email.trim().length > 0 &&
-           this.enrollment.phone.trim().length > 0;
+    return (
+      !Object.values(this.validationErrors).some(Boolean) &&
+      !!this.enrollment.name &&
+      !!this.enrollment.email &&
+      !!this.enrollment.phone &&
+      !!this.enrollment.knowsUrdu &&
+      this.enrollment.guardianConsent &&
+      this.enrollment.studentAgreement
+    );
   }
+  
 
-  // ===== OPEN MODAL =====
+  /* ===================== MODAL ===================== */
+
   openEnrollModal(course: Course): void {
     if (course.admissionStatus === false) {
       this.showToast('Admissions are currently closed for this course', 'info');
       return;
     }
     this.selectedCourse = course;
-    this.enrollment.course = course.title.main;
     this.resetForm();
+    this.enrollment.course = course.title.main;
 
-    const modal = new bootstrap.Modal(
-      document.getElementById('enrollModal')
-    );
-    modal.show();
+    new bootstrap.Modal(document.getElementById('enrollModal')).show();
   }
 
   // ===== TOASTER METHOD =====
@@ -252,13 +263,12 @@ export class CoursesComponent implements OnInit {
   }
 
   submitEnrollment(): void {
-    // Mark all fields as touched
-    this.touched = { name: true, email: true, phone: true };
-    
-    // Validate all fields
-    this.validateField('name',this.touched.name);
-    this.validateField('email',this.touched.email);
-    this.validateField('phone',this.touched.phone);
+    Object.keys(this.touched).forEach(
+      key => this.touched[key as keyof Enrollment] = true
+    );
+
+    (Object.keys(this.touched) as (keyof Enrollment)[])
+      .forEach(f => this.validateField(f));
 
     if (!this.isFormValid()) {
       this.showToast('Please fix the errors before submitting', 'error');
@@ -311,30 +321,43 @@ export class CoursesComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.enrollment = { 
-      name: '', 
-      email: '', 
-      phone: '', 
-      course: this.selectedCourse?.title.main || '' 
+    this.enrollment = {
+      name: '',
+      email: '',
+      phone: '',
+      course: this.selectedCourse?.title.main || '',
+      knowsUrdu: '',
+      guardianConsent: false,
+      studentAgreement: false
     };
+
     this.validationErrors = {};
-    this.touched = { name: false, email: false, phone: false };
+    Object.keys(this.touched).forEach(
+      key => this.touched[key as keyof Enrollment] = false
+    );
+
     this.formProgress = 0;
+    this.isSubmitting = false;
     this.submitButtonText = 'Complete Enrollment';
     this.submitButtonIcon = 'bi bi-arrow-right-circle-fill';
   }
 
-  // ===== UPDATE PROGRESS BAR =====
+  /* ===================== PROGRESS ===================== */
+
   updateProgress(): void {
     let filled = 0;
     if (this.enrollment.name && !this.validationErrors.name) filled++;
     if (this.enrollment.email && !this.validationErrors.email) filled++;
     if (this.enrollment.phone && !this.validationErrors.phone) filled++;
+    if (this.enrollment.knowsUrdu) filled++;
+    if (this.enrollment.guardianConsent) filled++;
+    if (this.enrollment.studentAgreement) filled++;
 
-    this.formProgress = Math.round((filled / 3) * 100);
+    this.formProgress = Math.round((filled / 6) * 100);
   }
 
-  // ===== EXPORT EXCEL =====
+  /* ===================== EXPORT ===================== */
+
   exportToExcel(): void {
     const worksheet = XLSX.utils.json_to_sheet(this.enrollments);
     const workbook = XLSX.utils.book_new();

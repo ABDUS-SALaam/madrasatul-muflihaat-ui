@@ -210,6 +210,81 @@
                     <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.phone }}
                   </div>
                 </div>
+                <!-- Urdu Knowledge -->
+<div class="form-group">
+  <label class="form-label">Do you know Urdu?</label>
+  <div class="d-flex gap-4 mt-2">
+    <label class="custom-radio">
+      <input
+        type="radio"
+        name="knowsUrdu"
+        value="yes"
+        [(ngModel)]="enrollment.knowsUrdu"
+        (change)="validateField('knowsUrdu', true)"
+        required>
+      <span>Yes</span>
+    </label>
+
+    <label class="custom-radio">
+      <input
+        type="radio"
+        name="knowsUrdu"
+        value="no"
+        [(ngModel)]="enrollment.knowsUrdu"
+        (change)="validateField('knowsUrdu', true)"
+        required>
+      <span>No</span>
+    </label>
+  </div>
+
+  <div class="invalid-feedback d-block"
+       *ngIf="touched.knowsUrdu && validationErrors.knowsUrdu">
+    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.knowsUrdu }}
+  </div>
+</div>
+<!-- Guardian Iqraarnamaa -->
+<div class="form-group mt-4">
+  <label class="custom-checkbox">
+    <input
+      type="checkbox"
+      name="guardianConsent"
+      [(ngModel)]="enrollment.guardianConsent"
+      (change)="validateField('guardianConsent', true)"
+      required>
+
+    <span>
+      I, the <strong>Father / Guardian / Husband</strong>, give permission for the
+      student to enroll in this course and agree to the institute’s rules and policies.
+    </span>
+  </label>
+
+  <div class="invalid-feedback d-block"
+       *ngIf="touched.guardianConsent && validationErrors.guardianConsent">
+    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.guardianConsent }}
+  </div>
+</div>
+<!-- Taalibat Iqraarnamaa -->
+<div class="form-group mt-3">
+  <label class="custom-checkbox">
+    <input
+      type="checkbox"
+      name="studentAgreement"
+      [(ngModel)]="enrollment.studentAgreement"
+      (change)="validateField('studentAgreement', true)"
+      required>
+
+    <span>
+      I declare that I sincerely wish to study, attend classes regularly,
+      and abide by all rules and discipline of Madrasatul-Muflihaat.
+    </span>
+  </label>
+
+  <div class="invalid-feedback d-block"
+       *ngIf="touched.studentAgreement && validationErrors.studentAgreement">
+    <i class="bi bi-exclamation-circle me-1"></i>{{ validationErrors.studentAgreement }}
+  </div>
+</div>
+
     
                 <button
                   type="submit"
