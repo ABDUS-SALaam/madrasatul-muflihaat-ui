@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    underMaintenance: false  // Change this for development
+    underMaintenance: true  // Change this for development
   };
