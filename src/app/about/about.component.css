@@ -22,6 +22,41 @@
   border-radius: 5px;
 }
 
+.guidance-card {
+  background: linear-gradient(135deg, #ffffff, #f4f8f7);
+  border: 1px solid #e3ecea;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.guidance-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.guidance-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #eef5f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.guidance-text {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+.hafizahullah {
+  display: block;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #666;
+}
+
 
 /* SECTION GENERAL */
 .about-section,

@@ -22,7 +22,7 @@ facultyGroups: any[] = [];
     { number: '4+', label: 'Years of Service', icon: 'bi bi-calendar' },
     { number: '1000+', label: 'Students', icon: 'fa-users' },
     { number: '5+', label: 'Courses Designed', icon: 'fa-book-open' },
-    { number: '6+', label: 'Qualified Muallimat', icon: 'fa-user-graduate' },
+    { number: '16+', label: 'Team Members', icon: 'fa-user-graduate' },
   ];
 
   faculty = [
