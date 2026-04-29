@@ -19,7 +19,9 @@ export class AppComponent implements OnInit {
   activeLink: string = 'home';
   hijriDate: string = '';
   hijriFullDate: string = '';
-  navLinks = ['home', 'about', 'courses', 'contact'];
+  navLinks = ['home', 'about', 'courses', 'contact', 'portal'];
+  hoveredPortal = false;
+  showMemberBanner = true;
   @HostBinding('class.dark') get darkMode() {
     return this.isDark;
   }

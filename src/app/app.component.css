@@ -252,3 +252,114 @@ html {
 html {
     scroll-behavior: smooth;
 }
+
+
+/* Portal Access Link */
+.portal-access {
+    background: linear-gradient(135deg, #d4a650 0%, #e8c468 100%) !important;
+    color: #fff !important;
+    border: 1px solid rgba(212, 166, 80, 0.3) !important;
+    box-shadow: 0 2px 8px rgba(212, 166, 80, 0.2);
+    transition: all 0.3s ease !important;
+}
+
+.portal-access:hover {
+    background: linear-gradient(135deg, #c19640 0%, #d4a650 100%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(212, 166, 80, 0.3);
+    color: #fff !important;
+}
+
+.portal-access.active {
+    background: linear-gradient(135deg, #b88530 0%, #c19640 100%) !important;
+    box-shadow: 0 2px 10px rgba(212, 166, 80, 0.4);
+}
+
+
+/* Member Login Banner */
+.member-login-banner {
+    background: linear-gradient(135deg, #d4a650 0%, #e8c468 100%);
+    padding: 15px 0;
+    border-bottom: 2px solid rgba(212, 166, 80, 0.3);
+    position: relative;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.banner-text h4 {
+    color: #fff;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.banner-text p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.btn-login-banner {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-login-banner:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-close-banner {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.btn-close-banner:hover {
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .banner-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .banner-text h4 {
+        font-size: 16px;
+    }
+    
+    .btn-close-banner {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+
+/* Fix banner positioning */
+.member-login-banner {
+    background: linear-gradient(135deg, #d4a650 0%, #e8c468 100%);
+    padding: 15px 0;
+    border-bottom: 2px solid rgba(212, 166, 80, 0.3);
+    position: relative;
+    margin-top: 76px; /* Account for fixed navbar height */
+    z-index: 1000;
+}
